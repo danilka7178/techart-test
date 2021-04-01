@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import app from "./app.scss"
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Paper className="calculator" elevation={3}>
+        <h3 className="calculator__title">Калькулятор цены конструкций</h3>
+        <p className="calculator__step">Шаг 1</p>
+        <Paper className="calculator__content">
+          {/* <CalcContent /> */}
+        </Paper>
+        <div className="calculator__buttons">
+          <Button className="calculator__button" variant="outlined" color="primary">
+            Отмена
+          </Button>
+          <Button className="calculator__button" variant="contained" color="primary">
+            Далее
+          </Button>
+        </div>
+      </Paper>
     </div>
   );
 }

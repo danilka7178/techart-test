@@ -1,0 +1,39 @@
+.app {
+   text-align: center;
+   color: red;
+}
+
+.calculator {
+   margin: 20px auto;
+   max-width: 600px;
+
+   &__title {
+      margin: 0px 0px 10px 0px;
+      padding: 10px 0px 0px 0px;
+
+      font-size: 24px;
+      line-height: 24px;
+   }
+
+   &__step {
+      margin: 0px 0px 10px 0px;
+
+      font-size: 18px;
+      line-height: 18px;
+   }
+
+   &__content {
+      margin: 10px;
+   }
+
+   &__buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 10px 10px 10px;
+   }
+
+   &__button {
+      margin: 0px 10px 0px 10px;
+   }
+}
