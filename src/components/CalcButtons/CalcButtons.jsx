@@ -1,22 +1,27 @@
 import style from "./CalcButtons.module.scss"
 import Button from '@material-ui/core/Button';
 import { useSelector, useDispatch } from "react-redux";
-import { setStep, setBuild, setHeight, setMaterial } from "../../store/calculator/actions";
+import { setStep, setBuild, setHeight, setMaterial, setSizeX, setSizeY } from "../../store/calculator/actions";
 
 function CalcButtons() {
    const dispatch = useDispatch();
    const step = useSelector(state => state.calculator.step);
-   const building = useSelector(state => state.calculator.building);
    const height = useSelector(state => state.calculator.height);
+   const sizeX = useSelector(state => state.calculator.sizeX);
+   const sizeY = useSelector(state => state.calculator.sizeY);
 
    const confirm = true;
 
-   const disabledBtnBack = !step ? false :
+   const disabledBtnBack = !step ? true :
       step === 1 ? true : false;
 
-   console.log(height)
-
-   const disabledBtnNext = (!building || height <= 0) ? true : false;
+   const disabledBtnNext = () => {
+      if (step === 1 || step === 3 || height <= 0) {
+         return true
+      } else if (step === 4 && (sizeX <= 0 || sizeY <= 0)) {
+         return true
+      }
+   }
 
    const handleClickBtnNext = () => {
       if (step === 5) {
@@ -29,13 +34,15 @@ function CalcButtons() {
    }
 
    const handleClickBtnPrev = () => {
-      if (step === 4) {
-         dispatch(setStep(5))
+      if (step === 6) {
+         dispatch(setStep(1))
       } else {
          dispatch(setStep(1))
          dispatch(setBuild(''))
          dispatch(setHeight(''))
          dispatch(setMaterial(''))
+         dispatch(setSizeX(''))
+         dispatch(setSizeY(''))
       }
    }
 
@@ -54,7 +61,7 @@ function CalcButtons() {
             <Button
                className={style.button}
                onClick={handleClickBtnNext}
-               disabled={disabledBtnNext}
+               disabled={disabledBtnNext()}
                variant="contained"
                color={step === 4 ? "secondary" : "primary"}
             >

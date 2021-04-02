@@ -3,6 +3,9 @@ export const SET_BUILD = "SET_BUILD";
 export const SET_HEIGHT = "SET_HEIGHT";
 export const SET_MATERIAL = "SET_MATERIAL";
 
+export const SET_SIZEX = "SET_SIZEX";
+export const SET_SIZEY = "SET_SIZEY";
+
 export const setStep = (data) => ({
    type: SET_STEP,
    payload: data
@@ -20,5 +23,15 @@ export const setHeight = (data) => ({
 
 export const setMaterial = (data) => ({
    type: SET_MATERIAL,
+   payload: data
+})
+
+export const setSizeX = (data) => ({
+   type: SET_SIZEX,
+   payload: data
+})
+
+export const setSizeY = (data) => ({
+   type: SET_SIZEY,
    payload: data
 })
