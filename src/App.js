@@ -1,7 +1,8 @@
 import React from 'react';
-import app from "./app.scss"
+import "./app.scss"
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import CalcContent from "./components/CalcContent/CalcContent"
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <h3 className="calculator__title">Калькулятор цены конструкций</h3>
         <p className="calculator__step">Шаг 1</p>
         <Paper className="calculator__content">
-          {/* <CalcContent /> */}
+          <CalcContent />
         </Paper>
         <div className="calculator__buttons">
           <Button className="calculator__button" variant="outlined" color="primary">
