@@ -1,0 +1,32 @@
+.body {
+   text-align: left;
+
+   ul {
+      margin: 0px 0px 0px 0px;
+      padding: 0px 0px 10px 30px;
+
+      li {
+         max-width: 150px;
+         margin: 0px 0px 5px 0px;
+         &:last-child {
+            margin: 0px 0px 0px 0px;
+         }
+
+         &:hover {
+            color: green;
+            cursor: pointer;
+            text-decoration: underline;
+         }
+
+         &:active {
+            color: rgb(0, 39, 0);
+            cursor: pointer;
+            text-decoration: underline;
+         }
+      }
+   }
+}
+.input {
+   text-align: center;
+   padding: 0px 0px 20px 0px;
+}

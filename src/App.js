@@ -1,26 +1,26 @@
 import React from 'react';
-import "./app.scss"
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import CalcContent from "./components/CalcContent/CalcContent"
+import "./app.scss";
+import CalcContent from "./components/CalcContent/CalcContent";
+import CalcButtons from "./components/CalcButtons/CalcButtons";
+import { useSelector } from "react-redux";
 
 function App() {
+  const step = useSelector(state => state.calculator.step);
+
+  const calcStep = !step ? "Ошибка" :
+    (step === 1 || step === 2 || step === 3 || step === 4) ? `Шаг ${step}` :
+      (step === 5 || step === 6) ? "Результат расчёта" : "Неизвестный шаг";
+
   return (
     <div className="app">
       <Paper className="calculator" elevation={3}>
         <h3 className="calculator__title">Калькулятор цены конструкций</h3>
-        <p className="calculator__step">Шаг 1</p>
+        <p className="calculator__step">{calcStep}</p>
         <Paper className="calculator__content">
           <CalcContent />
         </Paper>
-        <div className="calculator__buttons">
-          <Button className="calculator__button" variant="outlined" color="primary">
-            Отмена
-          </Button>
-          <Button className="calculator__button" variant="contained" color="primary">
-            Далее
-          </Button>
-        </div>
+        <CalcButtons />
       </Paper>
     </div>
   );
