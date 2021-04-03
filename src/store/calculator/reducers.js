@@ -2,7 +2,8 @@ import produce from "immer";
 
 import {
    SET_STEP, SET_BUILD, SET_HEIGHT,
-   SET_MATERIAL, SET_SIZEX, SET_SIZEY
+   SET_MATERIAL, SET_SIZEX, SET_SIZEY,
+   SET_LOAD, SET_RESULT
 } from "./actions";
 
 const initialState = {
@@ -11,7 +12,9 @@ const initialState = {
    height: "",
    material: "",
    sizeX: "",
-   sizeY: ""
+   sizeY: "",
+   loading: false,
+   result: ""
 }
 
 export const calculatorReducer = produce((draftState, action) => {
@@ -27,5 +30,11 @@ export const calculatorReducer = produce((draftState, action) => {
       draftState.sizeX = action.payload
    } else if (action.type === SET_SIZEY) {
       draftState.sizeY = action.payload
+   } else if (action.type === SET_LOAD) {
+      draftState.loading = action.payload
+   } else if (action.type === SET_LOAD) {
+      draftState.loading = action.payload
+   } else if (action.type === SET_RESULT) {
+      draftState.result = action.payload
    }
 }, initialState)

@@ -1,7 +1,11 @@
 import style from "./CalcButtons.module.scss"
 import Button from '@material-ui/core/Button';
 import { useSelector, useDispatch } from "react-redux";
-import { setStep, setBuild, setHeight, setMaterial, setSizeX, setSizeY } from "../../store/calculator/actions";
+import {
+   setStep, setBuild, setHeight,
+   setMaterial, setSizeX, setSizeY,
+   getResult
+} from "../../store/calculator/actions";
 
 function CalcButtons() {
    const dispatch = useDispatch();
@@ -9,8 +13,6 @@ function CalcButtons() {
    const height = useSelector(state => state.calculator.height);
    const sizeX = useSelector(state => state.calculator.sizeX);
    const sizeY = useSelector(state => state.calculator.sizeY);
-
-   const confirm = true;
 
    const disabledBtnBack = !step ? true :
       step === 1 ? true : false;
@@ -27,23 +29,21 @@ function CalcButtons() {
       if (step === 5) {
          dispatch(setStep(1))
       } else {
-         if (step === 4 && !confirm) {
-            dispatch(setStep(6))
-         } else { dispatch(setStep(+step + 1)) }
+         if (step === 4) {
+            dispatch(getResult())
+         } else {
+            dispatch(setStep(+step + 1))
+         }
       }
    }
 
    const handleClickBtnPrev = () => {
-      if (step === 6) {
-         dispatch(setStep(1))
-      } else {
-         dispatch(setStep(1))
-         dispatch(setBuild(''))
-         dispatch(setHeight(''))
-         dispatch(setMaterial(''))
-         dispatch(setSizeX(''))
-         dispatch(setSizeY(''))
-      }
+      dispatch(setStep(1))
+      dispatch(setBuild(''))
+      dispatch(setHeight(''))
+      dispatch(setMaterial(''))
+      dispatch(setSizeX(''))
+      dispatch(setSizeY(''))
    }
 
    return (
@@ -55,7 +55,7 @@ function CalcButtons() {
             variant={step === 5 ? "contained" : "outlined"}
             color="primary"
          >
-            {(step !== 5) ? "Отмена" : "Новый расчёт"}
+            {(step !== 5) ? (step === 6) ? "Новый расчёт" : "Отмена" : "Новый расчёт"}
          </Button>
          {(step === 1 || step === 2 || step === 3 || step === 4) ? (
             <Button
